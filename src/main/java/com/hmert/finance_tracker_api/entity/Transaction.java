@@ -11,14 +11,14 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
+    private String type; // INCOME / EXPENSE
     private Double amount;
     private String category;
     private String description;
     private LocalDate date;
 
     public Transaction() {}
-    
+
     public Long getId() { return id; }
     public String getType() { return type; }
     public Double getAmount() { return amount; }
