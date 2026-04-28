@@ -23,9 +23,13 @@ public class TransactionController {
     }
 
     @GetMapping
-    public List<Transaction> findAll() {
-        return service.findAll();
+    public List<Transaction> findAll(@RequestParam(required = false) String category) {
+    if (category != null) {
+        return service.findByCategory(category);
     }
+
+    return service.findAll();
+}
 
     @GetMapping("/balance")
     public Double getBalance() {

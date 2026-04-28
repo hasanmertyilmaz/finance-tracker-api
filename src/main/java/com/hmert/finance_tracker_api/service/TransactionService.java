@@ -26,6 +26,9 @@ public class TransactionService {
     public List<Transaction> findAll() {
         return repository.findAll();
     }
+    public List<Transaction> findByCategory(String category) {
+    return repository.findByCategoryIgnoreCase(category);
+}
 
     // BALANCE
 public Double getBalance() {
