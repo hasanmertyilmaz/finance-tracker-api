@@ -67,4 +67,22 @@ public Map<String, Double> getSummary() {
 
     return summary;
 }
+
+
+public Transaction update(Long id, Transaction updatedTransaction) {
+    Transaction existingTransaction = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+    existingTransaction.setType(updatedTransaction.getType());
+    existingTransaction.setAmount(updatedTransaction.getAmount());
+    existingTransaction.setCategory(updatedTransaction.getCategory());
+    existingTransaction.setDescription(updatedTransaction.getDescription());
+    existingTransaction.setDate(updatedTransaction.getDate());
+
+    return repository.save(existingTransaction);
+}
+
+public void delete(Long id) {
+    repository.deleteById(id);
+}
 }

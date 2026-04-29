@@ -41,4 +41,14 @@ public class TransactionController {
     public Map<String, Double> getSummary() {
         return service.getSummary();
     }
+
+    @PutMapping("/{id}")
+    public Transaction update(@PathVariable Long id, @Valid @RequestBody Transaction transaction) {
+        return service.update(id, transaction);
+}
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+}
 }
