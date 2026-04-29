@@ -2,6 +2,7 @@ package com.hmert.finance_tracker_api.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "transactions")
@@ -11,11 +12,20 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type; // INCOME / EXPENSE
-    private Double amount;
-    private String category;
-    private String description;
-    private LocalDate date;
+    @NotBlank
+private String type;
+
+@NotNull
+@Positive
+private Double amount;
+
+@NotBlank
+private String category;
+
+private String description;
+
+@NotNull
+private LocalDate date;
 
     public Transaction() {}
 
