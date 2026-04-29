@@ -1,11 +1,11 @@
 package com.hmert.finance_tracker_api.service;
 
 import com.hmert.finance_tracker_api.entity.Transaction;
+import com.hmert.finance_tracker_api.exception.TransactionNotFoundException;
 import com.hmert.finance_tracker_api.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
-
 import java.util.List;
 
 @Service
@@ -71,7 +71,7 @@ public Map<String, Double> getSummary() {
 
 public Transaction update(Long id, Transaction updatedTransaction) {
     Transaction existingTransaction = repository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Transaction not found"));
+            .orElseThrow(() -> new TransactionNotFoundException(id));
 
     existingTransaction.setType(updatedTransaction.getType());
     existingTransaction.setAmount(updatedTransaction.getAmount());
